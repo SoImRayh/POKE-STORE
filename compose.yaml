@@ -1,0 +1,44 @@
+
+services:
+  db:
+    env_file:
+      - .env
+    container_name: db
+    image: postgres
+    restart: always
+    volumes:
+      - postgrevolume:/var/lib/postgresql
+    environment:
+      POSTGRES_PASSWORD: $SQLPASSWORD
+      POSTGRES_USER: $SQLUSER
+      POSTGRES_DBE: $SQLDATABASE
+    ports:
+      - '5432'
+  
+  pgadmin:
+    image: dpage/pgadmin4:9.12.0
+    container_name: pgadmin
+    depends_on: 
+      - db
+    env_file:
+      - .env
+    environment:
+      PGADMIN_DEFAULT_EMAIL: $PGADMIN_DEFAULT_EMAIL
+      PGADMIN_DEFAULT_PASSWORD: $PGADMIN_DEFAULT_PASSWORD
+    ports:
+      - "5050:80"
+
+  web:
+    image: nginx
+    volumes:
+    - ./nginx:/etc/nginx
+    - ./cards:/usr/share/cards:ro
+    ports:
+    - "8080:80"
+    environment:
+    - NGINX_HOST=dev.dev
+    - NGINX_PORT=80
+
+volumes:
+  postgrevolume:
+    external: true

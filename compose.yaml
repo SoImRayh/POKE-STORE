@@ -36,7 +36,7 @@ services:
     ports:
     - "8080:80"
     environment:
-    - NGINX_HOST=dev.dev
+    - NGINX_HOST=dev.rayh
     - NGINX_PORT=80
 
 volumes:

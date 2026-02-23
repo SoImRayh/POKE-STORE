@@ -1,5 +1,8 @@
 package dev.rayh.cardstore.controller;
 
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,7 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import dev.rayh.cardstore.domain.Card;
+import dev.rayh.cardstore.domain.card.Card;
+import dev.rayh.cardstore.domain.dto.CardDto;
 import dev.rayh.cardstore.service.imp.CardServiceImp;
 import lombok.RequiredArgsConstructor;
 
@@ -54,6 +58,13 @@ public class CardController {
     public ResponseEntity handleCreate(@RequestBody Card card){
         return service.handleCreate(card);
     }
+
+    @PostMapping("/saveall")
+    public ResponseEntity saveAllEntity(@RequestBody List<Card> entities) {
+        //TODO: process POST request
+        return service.handleSaveAll(entities);
+    }
+    
 
     
 }

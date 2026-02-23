@@ -4,12 +4,16 @@ package dev.rayh.cardstore.service.imp;
 import java.util.List;
 import java.util.Optional;
 
+import javax.swing.text.html.parser.Entity;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import dev.rayh.cardstore.domain.Card;
+import dev.rayh.cardstore.domain.card.Card;
+import dev.rayh.cardstore.domain.factory.CardFactory;
+import dev.rayh.cardstore.entity.CardEntity;
 import dev.rayh.cardstore.repository.CardRepository;
 import dev.rayh.cardstore.service.CardService;
 import lombok.RequiredArgsConstructor;
@@ -22,35 +26,31 @@ public class CardServiceImp implements CardService {
     private final FileStorageServiceImp fileStorageService;
 
     public ResponseEntity handleGetAll(){
-        Iterable<Card> cards = repository.findAll();
+
+        List<Card> cards = repository.findAll().stream().map(
+            entity -> CardFactory.fromEntity(entity)
+        ).toList();
 
         return new ResponseEntity<>(cards, HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity handleGetById(String id) {
-        var card = repository.findById(id);
-        if (card.isPresent()) {
-            return new ResponseEntity<>(card.get(), HttpStatus.OK);
-        }
+        
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @Override
     public ResponseEntity handleGetByName(String name) {
-        var cards = repository.findByName(name);
-        if (cards.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(cards, HttpStatus.OK);
+        
+        return new ResponseEntity<>( HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity handleCreate(Card card) {
+        CardEntity entity = CardFactory.fromModel(card);
 
-        card.createId();
-
-        repository.save(card);
+        card = CardFactory.fromEntity(repository.save(entity));
 
         return new ResponseEntity<>(card, HttpStatus.OK);
     }
@@ -68,22 +68,17 @@ public class CardServiceImp implements CardService {
 
     public ResponseEntity handleSetImage(String name, MultipartFile img) {
 
-        List<Card> c = repository.findByName(name);
+        return new ResponseEntity<>("a", HttpStatus.OK);
+    }
 
-        if (c.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public ResponseEntity handleSaveAll(List<Card> models) {
 
-        String path = fileStorageService.storeFile(img);
+        List<CardEntity> entities = models.stream().map( m -> CardFactory.fromModel(m)).toList();
 
-        if (path == null) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        var cardToUpdate = c.get(0);
-        cardToUpdate.setImageUrl(path);
-        repository.save(cardToUpdate);
+        models = repository.saveAll(entities).stream().map(e -> CardFactory.fromEntity(e)).toList();
 
-        return new ResponseEntity<>(cardToUpdate, HttpStatus.OK);
+        return new ResponseEntity<>(models, HttpStatus.OK);
+        // TODO Auto-generated method stub
     }
 
     

@@ -61,7 +61,6 @@ public class CardController {
 
     @PostMapping("/saveall")
     public ResponseEntity saveAllEntity(@RequestBody List<Card> entities) {
-        //TODO: process POST request
         return service.handleSaveAll(entities);
     }
     

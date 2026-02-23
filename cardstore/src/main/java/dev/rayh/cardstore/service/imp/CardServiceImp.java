@@ -78,7 +78,6 @@ public class CardServiceImp implements CardService {
         models = repository.saveAll(entities).stream().map(e -> CardFactory.fromEntity(e)).toList();
 
         return new ResponseEntity<>(models, HttpStatus.OK);
-        // TODO Auto-generated method stub
     }
 
     

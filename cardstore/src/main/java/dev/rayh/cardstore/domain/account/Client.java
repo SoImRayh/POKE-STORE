@@ -1,6 +1,6 @@
 package dev.rayh.cardstore.domain.account;
 
-import dev.rayh.cardstore.domain.CPForCNPJInvalidException;
+import dev.rayh.cardstore.exception.CPForCNPJInvalidException;
 import jakarta.validation.constraints.Email;
 import lombok.AllArgsConstructor;
 import lombok.Data;

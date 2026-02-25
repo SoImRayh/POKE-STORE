@@ -5,6 +5,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import dev.rayh.cardstore.domain.card.Card;
 
+import java.util.List;
+
 public interface CardService {
 
     ResponseEntity handleGetAll();

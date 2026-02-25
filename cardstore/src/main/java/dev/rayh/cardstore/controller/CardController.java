@@ -31,7 +31,7 @@ public class CardController {
 
     @GetMapping("/get")
     public ResponseEntity handleGet(){
-        return service.handleGetAll();
+        return  service.handleGetAll();
     }
 
     @GetMapping("/get/{id}")

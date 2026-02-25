@@ -1,7 +1,6 @@
-package dev.rayh.cardstore.domain;
+package dev.rayh.cardstore.exception;
 
 import dev.rayh.cardstore.domain.account.Client;
-import lombok.Generated;
 import lombok.Getter;
 
 @Getter

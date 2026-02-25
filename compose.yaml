@@ -38,6 +38,12 @@ services:
     environment:
     - NGINX_HOST=dev.rayh
     - NGINX_PORT=80
+  
+  redis:
+    image: redis
+    container_name: redis-app
+    ports:
+      - "6379:6379"
 
 volumes:
   postgrevolume:

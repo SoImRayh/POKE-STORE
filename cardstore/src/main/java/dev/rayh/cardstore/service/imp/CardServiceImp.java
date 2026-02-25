@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import javax.swing.text.html.parser.Entity;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -30,6 +31,7 @@ public class CardServiceImp implements CardService {
         List<Card> cards = repository.findAll().stream().map(
             entity -> CardFactory.fromEntity(entity)
         ).toList();
+
 
         return new ResponseEntity<>(cards, HttpStatus.OK);
     }

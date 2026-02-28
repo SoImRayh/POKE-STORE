@@ -4,7 +4,9 @@ import dev.rayh.cardstore.domain.account.Account;
 import dev.rayh.cardstore.domain.account.AccountRole;
 import dev.rayh.cardstore.domain.dto.NewAccountDto;
 import dev.rayh.cardstore.domain.factory.AccountFactory;
+import dev.rayh.cardstore.entity.AccountEntity;
 import dev.rayh.cardstore.exception.NewAccountException;
+import dev.rayh.cardstore.exception.NoRecordFoundexception;
 import dev.rayh.cardstore.repository.AccountRepository;
 import dev.rayh.cardstore.service.AccountService;
 import lombok.RequiredArgsConstructor;
@@ -53,5 +55,36 @@ public class AccountServiceImpl implements AccountService {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public ResponseEntity deleteAccount(UUID id) {
+
+        AccountEntity account = repository.findById(id)
+                .orElseThrow( () -> new NoRecordFoundexception("No record Found"));
+
+        account.setIsActive(false);
+
+        repository.save(account);
+
+        return new ResponseEntity("Conta deletada com sucesso", HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity updateAccount(UUID id, Account account) {
+        Account model;
+
+        model = AccountFactory.toModel(findById(id));
+
+
+
+
+
+
+        return null;
+    }
+
+    private AccountEntity findById(UUID id){
+        return repository.findById(id).orElseThrow( () -> new NoRecordFoundexception("No Account record found"));
     }
 }

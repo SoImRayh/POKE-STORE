@@ -13,7 +13,14 @@ spring:
       ddl-auto: update
   docker:
     compose:
-      file: "../compose.yaml"
+      file: "./compose.yaml"
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+
 
 
 server:

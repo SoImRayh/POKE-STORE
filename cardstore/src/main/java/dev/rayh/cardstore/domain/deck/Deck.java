@@ -61,6 +61,7 @@ public class Deck {
     private int verifyIfExistsAndReturnTheIndex(Card c){
         for (int i = 0; i < MAX_CARD_QUANTITY; i++) {
             if (this.cards.get(i) != null){
+                //todo update method equals to veryfy only if the id is the same, is not necessary compare all props
                 if (this.cards.get(i).getCard().equals(cards))
                     return i;
             }

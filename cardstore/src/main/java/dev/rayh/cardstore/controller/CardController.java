@@ -2,6 +2,7 @@ package dev.rayh.cardstore.controller;
 
 import java.util.List;
 
+import dev.rayh.cardstore.domain.factory.CardFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,18 +12,16 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import dev.rayh.cardstore.domain.card.Card;
-import dev.rayh.cardstore.domain.dto.CardDto;
+import dev.rayh.cardstore.domain.card.model.Card;
 import dev.rayh.cardstore.service.imp.CardServiceImp;
 import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/card")
+@RequestMapping("/api/card")
 public class CardController {
 
     
@@ -64,6 +63,10 @@ public class CardController {
         return service.handleSaveAll(entities);
     }
     
+    @PostMapping("/test")
+    public ResponseEntity test(@RequestBody Card c){
+        return service.saveOne(c);
 
-    
+
+    }
 }

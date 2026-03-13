@@ -5,41 +5,41 @@ import dev.rayh.cardstore.domain.dto.NewAccountDto;
 import dev.rayh.cardstore.service.imp.AccountServiceImpl;
 
 
-import dev.rayh.contracts.EmailEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
 @RestController
-@RequestMapping(path = "/account")
+@RequestMapping(path = "/api/account")
 @RequiredArgsConstructor
 public class AccountController {
 
     private final AccountServiceImpl service;
-    private final KafkaTemplate<String, EmailEvent> kafkaTemplate;
-    @PostMapping("/new")
+    @PostMapping("/create")
     public ResponseEntity createNewAccount(@RequestBody NewAccountDto data){
         return service.createNewAccount(data);
     }
 
+    @PostMapping("/send-email")
+        public ResponseEntity sendEmail(@RequestBody NewAccountDto data){
+            return service.sendEmailOfVerification(data);
+        }
+
+    @GetMapping("/verify")
+    public ResponseEntity verifyEmailAccount( @RequestParam String verificationID ){
+        return service.verifyAndActivateAccount(verificationID);
+    }
+
     @PutMapping("/delete")
-    public ResponseEntity deleteAccount(@PathVariable UUID id){
-        return service.deleteAccount(id);
+    public ResponseEntity deleteAccount(@PathVariable String email){
+        return service.deleteAccount(email);
     }
 
     @PutMapping("/update")
     public ResponseEntity updateAccount(@PathVariable UUID id, @RequestBody Account account){
         return service.updateAccount(id, account);
     }
-    @PostMapping("/test")
-    public ResponseEntity teste(@RequestBody EmailEvent event){
 
-        System.out.println(event);
-            kafkaTemplate.send("email", event);
-
-            return ResponseEntity.ok(null);
-    }
 }

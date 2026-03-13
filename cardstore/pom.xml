@@ -98,6 +98,7 @@
 			<scope>compile</scope>
 		</dependency>
 
+
 		
 	<dependency>
 		<groupId>org.postgresql</groupId>
@@ -110,6 +111,28 @@
 			<artifactId>contracts</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>dev.rayh</groupId>
+			<artifactId>contracts</artifactId>
+			<version>1.0-SNAPSHOT</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>dev.rayh</groupId>
+			<artifactId>contracts</artifactId>
+			<version>1.0-SNAPSHOT</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
 
 		<!-- Source: https://mvnrepository.com/artifact/org.springframework.data/spring-data-redis -->
 	</dependencies>

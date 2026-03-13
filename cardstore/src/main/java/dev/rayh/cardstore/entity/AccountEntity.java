@@ -3,7 +3,6 @@ package dev.rayh.cardstore.entity;
 import dev.rayh.cardstore.domain.account.AccountRole;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
-import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -22,6 +21,8 @@ public class AccountEntity {
     @Enumerated(EnumType.STRING)
     private AccountRole role;
     private Boolean isActive;
+    private Boolean isEmailVerified;
+    private Boolean isSmartPhoneVerified;
     private LocalDateTime createdAt;
 
 

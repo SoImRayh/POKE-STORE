@@ -2,18 +2,15 @@ package dev.rayh.cardstore.service.imp;
 
 
 import java.util.List;
-import java.util.Optional;
 
-import javax.swing.text.html.parser.Entity;
-
+import dev.rayh.cardstore.domain.card.entity.CardEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import dev.rayh.cardstore.domain.card.Card;
+import dev.rayh.cardstore.domain.card.model.Card;
 import dev.rayh.cardstore.domain.factory.CardFactory;
-import dev.rayh.cardstore.entity.CardEntity;
 import dev.rayh.cardstore.repository.CardRepository;
 import dev.rayh.cardstore.service.CardService;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +27,7 @@ public class CardServiceImp implements CardService {
         List<Card> cards = repository.findAll().stream().map(
             entity -> CardFactory.fromEntity(entity)
         ).toList();
+
 
         return new ResponseEntity<>(cards, HttpStatus.OK);
     }
@@ -71,9 +69,19 @@ public class CardServiceImp implements CardService {
         return new ResponseEntity<>("a", HttpStatus.OK);
     }
 
+    @Override
+    public ResponseEntity saveOne(Card c) {
+        var ent = CardFactory.fromModel(c);
+
+        ent = repository.save(ent);
+
+        return new ResponseEntity(CardFactory.fromEntity(ent), HttpStatus.OK);
+
+    }
+
     public ResponseEntity handleSaveAll(List<Card> models) {
 
-        List<CardEntity> entities = models.stream().map( m -> CardFactory.fromModel(m)).toList();
+        List<CardEntity> entities = models.stream().map(m -> CardFactory.fromModel(m)).toList();
 
         models = repository.saveAll(entities).stream().map(e -> CardFactory.fromEntity(e)).toList();
 

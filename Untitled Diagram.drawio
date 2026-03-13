@@ -1,0 +1,109 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.2.5 Chrome/138.0.7204.251 Electron/37.6.1 Safari/537.36" version="28.2.5">
+  <diagram id="KIShnGQ4ULvCYTd2i9t7" name="Page-1">
+    <mxGraphModel dx="1426" dy="795" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="FxJFGes-hRsYuX8OJ5gL-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="FxJFGes-hRsYuX8OJ5gL-1" target="FxJFGes-hRsYuX8OJ5gL-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FxJFGes-hRsYuX8OJ5gL-5" value="Send data to create account" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="FxJFGes-hRsYuX8OJ5gL-4">
+          <mxGeometry x="-0.125" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FxJFGes-hRsYuX8OJ5gL-1" value="User" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="20" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FxJFGes-hRsYuX8OJ5gL-7" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="FxJFGes-hRsYuX8OJ5gL-3" target="FxJFGes-hRsYuX8OJ5gL-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FxJFGes-hRsYuX8OJ5gL-16" value="Publish event" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="FxJFGes-hRsYuX8OJ5gL-7">
+          <mxGeometry x="-0.2381" y="-3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FxJFGes-hRsYuX8OJ5gL-9" value="save account not activated" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="FxJFGes-hRsYuX8OJ5gL-3" target="FxJFGes-hRsYuX8OJ5gL-28">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="130" y="470" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FxJFGes-hRsYuX8OJ5gL-15" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="FxJFGes-hRsYuX8OJ5gL-3" target="FxJFGes-hRsYuX8OJ5gL-14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FxJFGes-hRsYuX8OJ5gL-17" value="save temporaly data" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="FxJFGes-hRsYuX8OJ5gL-15">
+          <mxGeometry x="0.0182" y="-3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FxJFGes-hRsYuX8OJ5gL-3" value="API" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="240" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FxJFGes-hRsYuX8OJ5gL-6" value="Apache KAFKA" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="360" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FxJFGes-hRsYuX8OJ5gL-14" value="Redis" style="whiteSpace=wrap;html=1;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="190" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FxJFGes-hRsYuX8OJ5gL-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="FxJFGes-hRsYuX8OJ5gL-19" target="FxJFGes-hRsYuX8OJ5gL-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FxJFGes-hRsYuX8OJ5gL-24" value="listening for new events" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="FxJFGes-hRsYuX8OJ5gL-23">
+          <mxGeometry x="0.3222" y="-1" relative="1" as="geometry">
+            <mxPoint x="29" y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FxJFGes-hRsYuX8OJ5gL-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="FxJFGes-hRsYuX8OJ5gL-19" target="FxJFGes-hRsYuX8OJ5gL-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FxJFGes-hRsYuX8OJ5gL-19" value="Email Microservice" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="620" y="360" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FxJFGes-hRsYuX8OJ5gL-26" value="Send Email with&lt;div&gt;activation Link&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;absoluteArcSize=1;arcSize=14;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="630" y="490" width="100" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="FxJFGes-hRsYuX8OJ5gL-28" value="DB" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.database;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="75" y="480" width="110" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="FxJFGes-hRsYuX8OJ5gL-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="FxJFGes-hRsYuX8OJ5gL-31" target="FxJFGes-hRsYuX8OJ5gL-32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="FxJFGes-hRsYuX8OJ5gL-31" value="USER" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="55" y="690" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FxJFGes-hRsYuX8OJ5gL-36" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="FxJFGes-hRsYuX8OJ5gL-32" target="FxJFGes-hRsYuX8OJ5gL-34">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="120" y="970" />
+              <mxPoint x="120" y="970" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FxJFGes-hRsYuX8OJ5gL-46" value="ACTIVATE ACCOUNT" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="FxJFGes-hRsYuX8OJ5gL-36">
+          <mxGeometry x="0.1925" y="-3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FxJFGes-hRsYuX8OJ5gL-44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="FxJFGes-hRsYuX8OJ5gL-32" target="FxJFGes-hRsYuX8OJ5gL-33">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="300" y="860" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FxJFGes-hRsYuX8OJ5gL-45" value="VERIFY DATA" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="FxJFGes-hRsYuX8OJ5gL-44">
+          <mxGeometry x="-0.2" y="-4" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="FxJFGes-hRsYuX8OJ5gL-32" value="API" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="55" y="830" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FxJFGes-hRsYuX8OJ5gL-33" value="REDIS" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="320" y="830" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="FxJFGes-hRsYuX8OJ5gL-34" value="DB" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.database;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="300" y="930" width="130" height="90" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

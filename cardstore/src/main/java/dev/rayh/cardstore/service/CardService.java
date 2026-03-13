@@ -3,7 +3,7 @@ package dev.rayh.cardstore.service;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
-import dev.rayh.cardstore.domain.card.Card;
+import dev.rayh.cardstore.domain.card.model.Card;
 
 public interface CardService {
 
@@ -15,4 +15,5 @@ public interface CardService {
     ResponseEntity handleGetByName(String name);
     ResponseEntity handleSetImage(String name, MultipartFile img);
 
+    ResponseEntity saveOne(Card c);
 }

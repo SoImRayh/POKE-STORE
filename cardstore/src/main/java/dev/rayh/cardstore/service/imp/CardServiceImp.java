@@ -4,6 +4,10 @@ package dev.rayh.cardstore.service.imp;
 import java.util.List;
 
 import dev.rayh.cardstore.domain.card.entity.CardEntity;
+import dev.rayh.cardstore.domain.card.set.SetEntity;
+import dev.rayh.cardstore.domain.card.set.SetRepository;
+import dev.rayh.cardstore.domain.factory.SetFactory;
+import dev.rayh.cardstore.exception.NoRecordFoundexception;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -21,11 +25,12 @@ public class CardServiceImp implements CardService {
 
     private final CardRepository repository;
     private final FileStorageServiceImp fileStorageService;
+    private final SetRepository setRepository;
 
     public ResponseEntity handleGetAll(){
 
         List<Card> cards = repository.findAll().stream().map(
-            entity -> CardFactory.fromEntity(entity)
+            entity -> CardFactory.modelFromEntity(entity)
         ).toList();
 
 
@@ -34,8 +39,12 @@ public class CardServiceImp implements CardService {
 
     @Override
     public ResponseEntity handleGetById(String id) {
+
+        Card c = CardFactory.modelFromEntity(
+                repository.findById(id).orElseThrow(() -> new NoRecordFoundexception("Not found"))
+        );
         
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(c, HttpStatus.OK);
     }
 
     @Override
@@ -46,9 +55,9 @@ public class CardServiceImp implements CardService {
 
     @Override
     public ResponseEntity handleCreate(Card card) {
-        CardEntity entity = CardFactory.fromModel(card);
+        CardEntity entity = CardFactory.entityFromModel(card);
 
-        card = CardFactory.fromEntity(repository.save(entity));
+        card = CardFactory.modelFromEntity(repository.save(entity));
 
         return new ResponseEntity<>(card, HttpStatus.OK);
     }
@@ -71,21 +80,26 @@ public class CardServiceImp implements CardService {
 
     @Override
     public ResponseEntity saveOne(Card c) {
-        var ent = CardFactory.fromModel(c);
+        var ent = CardFactory.entityFromModel(c);
 
         ent = repository.save(ent);
 
-        return new ResponseEntity(CardFactory.fromEntity(ent), HttpStatus.OK);
+        return new ResponseEntity(CardFactory.modelFromEntity(ent), HttpStatus.OK);
 
     }
 
-    public ResponseEntity handleSaveAll(List<Card> models) {
+    public ResponseEntity handleSaveAll(String setId, List<Card> models) {
+        SetEntity set;
 
-        List<CardEntity> entities = models.stream().map(m -> CardFactory.fromModel(m)).toList();
+        set = setRepository.findById(setId).orElseThrow(() ->
+                new NoRecordFoundexception("Not fouded set with this ID")
+        );
 
-        models = repository.saveAll(entities).stream().map(e -> CardFactory.fromEntity(e)).toList();
+        models.forEach(card -> card.setSet(SetFactory.modelFromEntity(set)));
 
-        return new ResponseEntity<>(models, HttpStatus.OK);
+        repository.saveAll(models.stream().map(CardFactory::entityFromModel).toList());
+
+        return new ResponseEntity<>("ok", HttpStatus.OK);
     }
 
     

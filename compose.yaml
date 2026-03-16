@@ -54,17 +54,17 @@ services:
     ports:
       - "5050:80"
 
-  web:
-    image: nginx
-    volumes:
-    - ./nginx:/etc/nginx
-    - ./cards:/usr/share/cards:ro
-    ports:
-    - "8080:80"
-    environment:
-    - NGINX_HOST=dev.rayh
-    - NGINX_PORT=80
-  
+#  web:
+#    image: nginx
+#    volumes:
+#    - ./nginx:/etc/nginx
+#    - ./cards:/usr/share/cards:ro
+#    ports:
+#    - "8080:80"
+#    environment:
+#    - NGINX_HOST=dev.rayh
+#    - NGINX_PORT=80
+#
   redis:
     image: redis
     container_name: redis-app

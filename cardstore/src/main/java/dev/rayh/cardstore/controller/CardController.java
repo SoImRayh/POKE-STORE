@@ -2,6 +2,7 @@ package dev.rayh.cardstore.controller;
 
 import java.util.List;
 
+import dev.rayh.cardstore.domain.dto.CardDto;
 import dev.rayh.cardstore.domain.factory.CardFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +34,7 @@ public class CardController {
         return  service.handleGetAll();
     }
 
-    @GetMapping("/get/{id}")
+    @GetMapping("/get/one")
     public ResponseEntity handleGetById(@RequestParam String id){
         return service.handleGetById(id);
     }
@@ -59,8 +60,8 @@ public class CardController {
     }
 
     @PostMapping("/saveall")
-    public ResponseEntity saveAllEntity(@RequestBody List<Card> entities) {
-        return service.handleSaveAll(entities);
+    public ResponseEntity saveAllEntity(@RequestParam String setId,@RequestBody List<Card> records) {
+        return service.handleSaveAll(setId, records);
     }
     
     @PostMapping("/test")

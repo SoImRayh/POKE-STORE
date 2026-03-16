@@ -3,6 +3,7 @@ package dev.rayh.cardstore.domain.card.entity;
 import dev.rayh.cardstore.domain.card.IntegerListConverter;
 import dev.rayh.cardstore.domain.card.StringListConverter;
 import dev.rayh.cardstore.domain.card.model.*;
+import dev.rayh.cardstore.domain.card.set.SetEntity;
 import dev.rayh.cardstore.domain.card.types.SubType;
 import dev.rayh.cardstore.domain.card.types.SuperType;
 import dev.rayh.cardstore.domain.card.types.Type;
@@ -66,6 +67,9 @@ public class CardEntity {
     private String regulationMark;
     @Embedded
     private ImageData images;
+    @ManyToOne
+    @JoinColumn(name = "set_id")
+    private SetEntity set;
 
     @PrePersist
     public void prePersist(){

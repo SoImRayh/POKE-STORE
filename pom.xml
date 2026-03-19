@@ -21,6 +21,7 @@
         <module>cardstore</module>
         <module>contracts</module>
         <module>mail</module>
+        <module>supservice</module>
     </modules>
     <dependencies>
         <!-- Source: https://mvnrepository.com/artifact/org.projectlombok/lombok -->

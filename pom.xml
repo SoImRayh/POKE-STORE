@@ -20,7 +20,6 @@
     <modules>
         <module>cardstore</module>
         <module>contracts</module>
-        <module>mail</module>
         <module>supservice</module>
     </modules>
     <dependencies>

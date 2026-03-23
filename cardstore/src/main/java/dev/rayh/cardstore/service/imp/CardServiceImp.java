@@ -4,6 +4,10 @@ package dev.rayh.cardstore.service.imp;
 import java.util.List;
 
 import dev.rayh.cardstore.domain.card.entity.CardEntity;
+import dev.rayh.cardstore.domain.responses.PageResponse;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -22,14 +26,19 @@ public class CardServiceImp implements CardService {
     private final CardRepository repository;
     private final FileStorageServiceImp fileStorageService;
 
-    public ResponseEntity handleGetAll(){
+    public ResponseEntity<PageResponse<Card>> handleGetAll(int pageSize, int pageIndex){
 
-        List<Card> cards = repository.findAll().stream().map(
-            entity -> CardFactory.fromEntity(entity)
-        ).toList();
+        Page<CardEntity> entities = repository.findAll(PageRequest.of(pageIndex, pageSize));
 
+        PageResponse<Card> pr = new PageResponse<>(
+                entities.map(CardFactory::fromEntity).toList(),
+                entities.getNumber(),
+                entities.getSize(),
+                entities.getTotalElements(),
+                entities.getTotalPages()
+        );
 
-        return new ResponseEntity<>(cards, HttpStatus.OK);
+        return new ResponseEntity<>(pr, HttpStatus.OK);
     }
 
     @Override

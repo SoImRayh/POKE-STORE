@@ -1,3 +1,18 @@
+server:
+  port: 8080
 spring:
   application:
     name: gateway
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          public-key-location: classpath:public.pem
+
+  cloud:
+    gateway:
+      routes:
+        - id: api-resource
+          uri: http://localhost:8081
+          predicates:
+            - Path=/api/**

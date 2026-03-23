@@ -1,0 +1,72 @@
+services:
+  #
+  #DB
+  #
+  db:
+    env_file:
+      - .env
+    container_name: db
+    image: postgres
+    restart: always
+    volumes:
+      - postgrevolume:/var/lib/postgresql
+    environment:
+      POSTGRES_PASSWORD: $SQLPASSWORD
+      POSTGRES_USER: $SQLUSER
+      POSTGRES_DBE: $SQLDATABASE
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis
+    container_name: redis-app
+    ports:
+      - "6379:6379"
+  # -------------------------
+  # ZOOKEEPER
+  # -------------------------
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.5.0
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+    ports:
+      - "2181:2181"
+
+  # -------------------------
+  # KAFKA
+  # -------------------------
+  kafka:
+    image: confluentinc/cp-kafka:7.5.0
+    container_name: kafka
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://localhost:9092
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+  auth-service:
+    depends_on:
+      - db
+      - redis
+#    build:
+#      context: ./
+#      dockerfile: supservice/Dockerfile
+    image: dev-container
+    ports:
+      - "8081:8080"
+    volumes:
+      - type: bind
+        source: ./supservice
+        target: /app
+    environment:
+      - SPRING_DEVTOOLS_RESTART_ENABLED=true
+
+  ##auth-service:
+volumes:
+  postgrevolume:
+    external: true

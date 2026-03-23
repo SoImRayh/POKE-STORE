@@ -1,7 +1,13 @@
 SPRING_MAIL_HOST: ${ENV_SPRING_MAIL_HOST}
+
 spring:
   application:
     name: cardstore
+  security:
+    oauth2:
+      resourceserver:
+        opaquetoken:
+          client-secret: $M/s&Q7<_JQW|bhE;aEg8niEC]vS79m4m@|A^e-sQ,#
   cache:
     type: redis
   data:

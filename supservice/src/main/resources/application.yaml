@@ -1,3 +1,20 @@
+
+jwt:
+  private-key: private.pem
+  secret: $M/s&Q7<_JQW|bhE;aEg8niEC]vS79m4m@|A^e-sQ,#
+  expiration: 86400000
 spring:
   application:
     name: supservice
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/rayh
+    password: 40028922
+    username: rayh
+    driver-class-name:
+server:
+  port: 8082

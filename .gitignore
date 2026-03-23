@@ -1,3 +1,6 @@
 .idea
 .vscode
 ./cardstore/.idea
+
+*.jar
+*.drawio

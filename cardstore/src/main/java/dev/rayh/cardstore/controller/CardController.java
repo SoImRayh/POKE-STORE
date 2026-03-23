@@ -5,6 +5,8 @@ import java.util.List;
 import dev.rayh.cardstore.domain.factory.CardFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +23,7 @@ import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
+@EnableMethodSecurity
 @RequestMapping("/api/card")
 public class CardController {
 
@@ -29,8 +32,9 @@ public class CardController {
 
 
     @GetMapping("/get")
-    public ResponseEntity handleGet(){
-        return  service.handleGetAll();
+    public ResponseEntity handleGet(@RequestParam(defaultValue = "15") int pageSize,
+                                    @RequestParam(defaultValue = "0") int pageIndex){
+        return  service.handleGetAll(pageSize, pageIndex);
     }
 
     @GetMapping("/get/{id}")
@@ -62,7 +66,8 @@ public class CardController {
     public ResponseEntity saveAllEntity(@RequestBody List<Card> entities) {
         return service.handleSaveAll(entities);
     }
-    
+
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/test")
     public ResponseEntity test(@RequestBody Card c){
         return service.saveOne(c);
